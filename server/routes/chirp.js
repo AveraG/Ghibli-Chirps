@@ -9,22 +9,23 @@ router.get('/', (req, res) => {
     res.send(chirpStore.GetChirps())
   }
   console.log('.get chirps');
-})
+});
 
 router.post('/', (req, res) => {
   console.log('posting');
   chirpStore.CreateChirp(req.body);
   res.sendStatus(200);
-})
+});
 
-router.put('/', function (req, res) {
-  chirpStore.UpdateChirp();
+router.put('/:id', function (req, res) {
+  console.log('hi')
+  chirpStore.UpdateChirp(req.params.id, req.body);
   res.sendStatus(200);
-})
+});
 
-router.delete('/', function (req, res) {
-  chirpStore.DeleteChirp();
+router.delete('/:id', function (req, res) {
+  chirpStore.DeleteChirp(req.params.id);
   res.sendStatus(200);
-})
+});
 
 module.exports = router;
